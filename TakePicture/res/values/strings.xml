@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TakePictureActivity!</string>
+    <string name="app_name">TakePicture</string>
+    <string name="welcome"><b>Ready to capture a new fossil?"</b></string>
+    <string name="button_text" weight="3">Photograph a New Fossil!</string>
+    <string name="name">Your Name:</string>
+    <string name="prompt"><b>Now Enter Your Metadata!</b></string>
+    <string name="location">Your Location:</string>
+    <string name="date">Date:</string>
+    <string name="fossilName">Fossil Name:</string>
+    <string name="notes">Notes:</string>
+    <string name="metadata_btn">Send picture and info to Database!</string>
+
+</resources>

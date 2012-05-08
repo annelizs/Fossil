@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<FrameLayout
+	
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">  -->
+
+<RelativeLayout 
+xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/fossilLayout"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    >
+    
+<!-- <Button
+	android:id="@+id/start_button"
+	android:layout_width="200dp"
+	android:layout_height="200dp"
+	android:text="And the fossil of today is..."
+	/>-->  
+
+<TextView  
+	android:id="@+id/fossil_common_name"
+    android:layout_width="fill_parent" 
+    android:layout_height="25dp" 
+    android:ellipsize="end"
+    android:gravity="center_horizontal"
+    style="@style/Text.commonName" />
+    
+
+<ImageView
+	android:id="@+id/fossil_image"
+	android:contentDescription="I'm a picture"
+	android:layout_width="75dp"
+	android:layout_height="75dp"
+	android:layout_centerHorizontal="true"
+	android:layout_centerInParent="true"
+	android:layout_below="@id/fossil_common_name"
+	android:src="@drawable/loading"
+	android:gravity="center_horizontal"/>
+
+<TextView  
+	android:id="@+id/fossil_latin_name"
+    android:layout_width="fill_parent"
+    android:layout_height="25dp"     
+    android:ellipsize="end"
+    android:gravity="center_horizontal"
+    android:layout_below="@id/fossil_image"
+    style="@style/Text.latinName" />
+    
+    
+<TextView
+	android:id="@+id/location"
+	android:layout_width="fill_parent"
+	android:layout_height="25dp"
+    android:ellipsize="end"
+    android:text="Default location"
+    android:layout_below="@id/fossil_latin_name"
+    android:gravity="center_horizontal"
+    style="@style/Text.Location" />
+	
+	</RelativeLayout>
+<!--</FrameLayout>-->
