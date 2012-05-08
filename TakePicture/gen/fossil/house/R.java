@@ -19,13 +19,12 @@ public final class R {
         public static final int RelativeLayout01=0x7f050000;
         public static final int ScrollView=0x7f050002;
         public static final int btn=0x7f050001;
-        public static final int date=0x7f050004;
-        public static final int fossilName=0x7f050007;
-        public static final int location=0x7f050005;
-        public static final int name=0x7f050006;
-        public static final int newFossil=0x7f050003;
-        public static final int notes=0x7f050008;
-        public static final int send_metadata=0x7f050009;
+        public static final int date=0x7f050003;
+        public static final int fossilName=0x7f050006;
+        public static final int location=0x7f050004;
+        public static final int name=0x7f050005;
+        public static final int notes=0x7f050007;
+        public static final int send_metadata=0x7f050008;
     }
     public static final class layout {
         public static final int main=0x7f030000;

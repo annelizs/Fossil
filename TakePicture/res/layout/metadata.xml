@@ -16,12 +16,6 @@
         android:layout_gravity="center"
         android:text="@string/prompt" />
     
-    <ImageView 
-        android:id="@+id/newFossil"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/icon"/>
 
     <TextView
         android:id="@+id/date"

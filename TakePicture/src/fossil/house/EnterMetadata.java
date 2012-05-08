@@ -3,6 +3,9 @@ package fossil.house;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URI;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -65,9 +68,6 @@ public class EnterMetadata extends Activity {
 		Uri imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 		
 		Log.e("enterMetadata", "I set the imageUri");
-		
-		ImageView imageView = (ImageView) findViewById(R.id.newFossil);				
-		imageView.setImageURI(imageUri);
 
 		Log.e("enterMetadata", imageUri.toString());
 		Log.e("enterMetadata", "I displayed the image");
@@ -110,7 +110,7 @@ public class EnterMetadata extends Activity {
 		textView.setText(lastKnownLocation.toString());
 		}
 		
-		//wtf why can't I instantiate
+		
 		//Anyway, use the calendar class to get the time/date
 		Calendar c = Calendar.getInstance();
 
@@ -130,6 +130,10 @@ public class EnterMetadata extends Activity {
 				EditText editText = (EditText) findViewById(R.id.name);				
 				Editable editable = editText.getText();
 				String name = editable.toString();
+				
+				editText = (EditText) findViewById(R.id.location);				
+				editable = editText.getText();				
+				String location = editable.toString();
 
 				editText = (EditText) findViewById(R.id.fossilName);				
 				editable = editText.getText();				
@@ -147,8 +151,7 @@ public class EnterMetadata extends Activity {
 
 				try {
 					json.put("name", name);
-					//					json.put("location", location);
-					//					json.put("date", date);
+					json.put("location", location);
 					json.put("fossilName", fossilName);
 					json.put("notes", notes);
 				} catch (JSONException e) {
@@ -158,19 +161,41 @@ public class EnterMetadata extends Activity {
 
 				String jsonFile = json.toString();
 
+				
 
 				try{
 
 
-					HttpClient httpclient = new DefaultHttpClient();
-					HttpPost httppost = new HttpPost("http://elizabeth.iriscouch.com/fossil_pictures/");
-
-					StringEntity se = new StringEntity(jsonFile);  
-					se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-					httppost.setEntity(se);
-					HttpResponse result = httpclient.execute(httppost);
-
-					Log.e("EnterMetadata", "Status: "+ result.getStatusLine().getStatusCode());
+					Socket soc = new Socket(InetAddress.getByName("elizabeth.iriscouch.com"), 80);
+					
+					OutputStream os = soc.getOutputStream();
+					
+					String contentLength = new Integer(jsonFile.length()).toString();
+					
+					String fossilData = "POST /fossil_pictures/ HTTP/1.0\r\n";
+					fossilData = fossilData + "Content-Type: application/json\r\n";
+					fossilData = fossilData + "Host: elizabeth.iriscouch.com\r\n";
+					fossilData = fossilData + "Content-Length: " + contentLength + "\r\n";
+					fossilData = fossilData + "\r\n";
+					fossilData = fossilData + jsonFile;
+					
+					os.write(fossilData.getBytes());
+					
+					os.flush();
+					
+					//os.close();
+					
+					InputStream is = soc.getInputStream();
+					
+					InputStreamReader isr = new InputStreamReader(is);
+					
+					BufferedReader br = new BufferedReader(isr);
+					
+					String resultString = br.readLine();
+					
+					Log.e("enterMetadata", resultString);
+					
+					Log.e("enterMetadata", fossilData);
 
 
 
